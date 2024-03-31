@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "class1"
+version = "0.1.0"
+description = ""
+authors = ["Arman229 <armanashraf015@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.110.0"
+unicorn = "^2.0.1.post1"
+uvicorn = "^0.28.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
