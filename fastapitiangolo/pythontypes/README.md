@@ -1,0 +1,1 @@
+When we define the types then python tell me all the methods and the properties of than object but without defining the types it is not possible.
