@@ -15,7 +15,7 @@ app:FastAPI = FastAPI()
 @app.get('/cites')
 def read_root():
     return {'cites':['lahore','sialkot','karachi']}
-
+#http://127.0.0.1:8000/?query=lahore
 @app.get('/',response_model=Dict[str,str])
 def read_rootcity(query:str):
      return {'city':'lahore','queryparmeters':query}
