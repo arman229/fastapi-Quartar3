@@ -1,9 +1,9 @@
 # Step 1: import FastAPI
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query,Path,Body
 from typing import Annotated,Union,Any
 import uvicorn
 from enum import Enum
-
+from pydantic import BaseModel
 
 # from tutorialfastapi.models import Language
 # Step 2: create a FastAPI "instance"
@@ -60,9 +60,15 @@ async def read_roots( ) -> dict[str, str]:
     return {"message": f"Hello World"}
 
 @app.get('/book_number/{book_id}')
-async def read_book_id(book_id: int) -> dict[str, int]:
+async def read_book_id(book_id: int ) -> dict[str, int]:
     return {"book_id": book_id}
+@app.get("/items/{item_id}")
+async def read_item(item_id: int ):
+    return {"item_id": item_id}
 
+@app.get("/items/{item_id}")
+async def read_item(item_id: int = Path(..., title="The ID of the item to get")):
+    return {"item_id": item_id}
 
 class Language(str, Enum):
     urdu = 'URDU'
@@ -78,10 +84,30 @@ async def read_language(language: Language) -> dict[str, str]:
 @app.get("/files/{file_path:path}")
 async def read_file(file_path: str):
     return {"file_path": file_path}
+class Item(BaseModel):
+    name: str
+    description: str | None = None
+    price: float
+    tax: float | None = None
 
 
+class User(BaseModel):
+    username: str
+    full_name: str | None = None
 
 
+# @app.put("/items/{item_id}")
+# async def update_item(
+#     item_id: int, item: Item, user: User, importance: Annotated[int, Body()]
+# ):
+#     results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
+#     return results
+
+
+@app.put("/items/{body_id}")
+async def body_idfun(body_id: int,item:Item):
+    result= {"body_id": body_id}
+    return result
 
 def main():
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
