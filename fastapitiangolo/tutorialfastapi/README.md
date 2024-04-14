@@ -16,3 +16,5 @@ All the data validation is performed under the hood by Pydantic,
 
 Note That 
 if we define two same paths route than the first one will be executed since the path matches the first
+Note that:
+When you declare other function parameters that are not part of the path parameters, they are automatically interpreted as "query" parameters.

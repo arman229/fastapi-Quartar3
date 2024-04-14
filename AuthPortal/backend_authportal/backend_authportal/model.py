@@ -7,5 +7,8 @@ class User(SQLModel, table=True):
   password: str 
   email: str 
   mobile_number: int
+  
+name:str = 'arman'  
+  
  
   
