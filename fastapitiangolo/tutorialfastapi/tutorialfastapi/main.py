@@ -32,26 +32,26 @@ async def read_items(
     if q:
         results.update({"q": q})
     return results 
-# @app.get("/items/")
-# # async def read_items(q: Annotated[str, Query(min_length=3)] =' ...'):
-#     # Query parameter list / multiple values
-# async def read_items(
-#     q: Annotated[
-#         str | None,
-#         Query(
-#             title="Query string",
-#             description="Query string for the items to search in the database that have a good match",
-#             min_length=3,
-#             alias='item-querys' ,
-#             deprecated=True,
+@app.get("/items/")
+# async def read_items(q: Annotated[str, Query(min_length=3)] =' ...'):
+    # Query parameter list / multiple values
+async def read_items(
+    q: Annotated[
+        str | None,
+        Query(
+            title="Query string",
+            description="Query string for the items to search in the database that have a good match",
+            min_length=3,
+            alias='item-querys' ,
+            deprecated=True,
             
-#         ),
-#     ] = None,
-# ):
-#     results:dict[str,list[dict[str,str]]|list[str]] = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
-#     if q:
-#         results.update({"q": q})
-#     return results
+        ),
+    ] = None,
+):
+    results:dict[str,list[dict[str,str]]|list[str]] = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+    if q:
+        results.update({"q": q})
+    return results
 
  
 @app.get('/')
@@ -96,12 +96,12 @@ class User(BaseModel):
     full_name: str | None = None
 
 
-# @app.put("/items/{item_id}")
-# async def update_item(
-#     item_id: int, item: Item, user: User, importance: Annotated[int, Body()]
-# ):
-#     results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
-#     return results
+@app.put("/items/{item_id}")
+async def update_item(
+    item_id: int, item: Item, user: User, importance: Annotated[int, Body()]
+):
+    results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
+    return results
 
 
 @app.put("/items/{body_id}")
