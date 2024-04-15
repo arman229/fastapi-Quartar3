@@ -4,6 +4,8 @@ from typing import Annotated,Union,Any
 import uvicorn
 from enum import Enum
 from pydantic import BaseModel
+from tutorialfastapi.topics import bodyfield
+from tutorialfastapi.topics import bodynestedmodels
 
 # from tutorialfastapi.models import Language
 # Step 2: create a FastAPI "instance"
@@ -24,18 +26,18 @@ async def read_items(
         return {"hidden_query": hidden_query}
     else:
         return {"hidden_query": "Not found"}
-@app.get("/items/")
-async def read_items(
+@app.get("/itemsdd/")
+async def read_itemsffffff(
     q: Annotated[str | None, Query(title="Query string", min_length=3)] = None,
 ):
-    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+    results:dict[str,list[dict[str,str]]|list[str]|str]= {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
     if q:
         results.update({"q": q})
     return results 
 @app.get("/items/")
 # async def read_items(q: Annotated[str, Query(min_length=3)] =' ...'):
     # Query parameter list / multiple values
-async def read_items(
+async def read_itemdddds(
     q: Annotated[
         str | None,
         Query(
@@ -48,7 +50,7 @@ async def read_items(
         ),
     ] = None,
 ):
-    results:dict[str,list[dict[str,str]]|list[str]] = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+    results:dict[str,list[dict[str,str]]|list[str]|str] = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
     if q:
         results.update({"q": q})
     return results
@@ -67,7 +69,7 @@ async def read_item(item_id: int ):
     return {"item_id": item_id}
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int = Path(..., title="The ID of the item to get")):
+async def read_itemdd(item_id: int = Path(..., title="The ID of the item to get")):
     return {"item_id": item_id}
 
 class Language(str, Enum):
@@ -109,7 +111,9 @@ async def body_idfun(body_id: int,item:Item):
     result= {"body_id": body_id}
     return result
 
-def main():
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
-if __name__ == '__main__':
-    main()
+# def main():
+#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+# if __name__ == '__main__':
+#     main()
+app.include_router(bodyfield.router)
+app.include_router(bodynestedmodels.router)
