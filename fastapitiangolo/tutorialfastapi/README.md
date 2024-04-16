@@ -3,6 +3,7 @@ Cover Topics
 
 Questions 
 Header parameters (convert underscore)
+response model (But if we use the same model for another path operation, we could be sending our user's passwords to every client.)
 
 
 
