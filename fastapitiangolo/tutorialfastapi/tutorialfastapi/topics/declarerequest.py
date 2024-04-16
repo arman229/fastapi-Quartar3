@@ -1,5 +1,5 @@
 from pydantic import BaseModel,Field
-from fastapi import APIRouter
+from fastapi import APIRouter,Body
 from typing import Annotated
 
 router = APIRouter()

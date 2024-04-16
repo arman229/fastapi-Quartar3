@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from tutorialfastapi.topics import bodyfield
 from tutorialfastapi.topics import bodynestedmodels
 from tutorialfastapi.topics import declarerequest
+from tutorialfastapi.topics import Header_parameters
 
 # from tutorialfastapi.models import Language
 # Step 2: create a FastAPI "instance"
@@ -120,4 +121,4 @@ app.include_router(bodyfield.router)
 app.include_router(bodynestedmodels.router)
 app.include_router(declarerequest.router)
 app.include_router(declarerequest.router)
-
+app.include_router(Header_parameters.router)
