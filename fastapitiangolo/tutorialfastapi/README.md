@@ -5,7 +5,15 @@ Questions
 Header parameters (convert underscore)
 response model (But if we use the same model for another path operation, we could be sending our user's passwords to every client.)
 
+exotic(egzotik: غیر ملکی/اجنبی)
 
+# Module
+In Python, a file is simply a module.
+
+# Package
+In Python, if a folder contains a file named __init__.py(This file may or may not be empty), then that folder will behave as a package.
+Schema
+A "schema" is a definition or description of something. Not the code that implements it, but just an abstract description.
 
 A "path" is also commonly called an "endpoint" or a "route".
 "Path" here refers to the last part of the URL starting from the first /.

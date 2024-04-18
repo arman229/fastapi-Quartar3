@@ -8,13 +8,14 @@ from tutorialfastapi.topics import bodyfield
 from tutorialfastapi.topics import bodynestedmodels
 from tutorialfastapi.topics import declarerequest
 from tutorialfastapi.topics import Header_parameters
+from tutorialfastapi.topics import FirstStep
+from tutorialfastapi.topics import PathParameters
 
-# from tutorialfastapi.models import Language
-# Step 2: create a FastAPI "instance"
+ 
 app: FastAPI = FastAPI(title='This is the tutorial of fastapi documentation')
 
 
-# Step 3: create a path operation
+ 
 @app.get('/email')
 # A "decorator" takes the function below and does something with it.
 async def read_root(email: str) -> dict[str, str]:
@@ -58,17 +59,11 @@ async def read_itemdddds(
     return results
 
  
-@app.get('/')
-# A "decorator" takes the function below and does something with it.
-async def read_roots( ) -> dict[str, str]:
-    return {"message": f"Hello World"}
+ 
+# A "decorator" takes the function below and does something with it(call automatically the below function).
+ 
 
-@app.get('/book_number/{book_id}')
-async def read_book_id(book_id: int ) -> dict[str, int]:
-    return {"book_id": book_id}
-@app.get("/items/{item_id}")
-async def read_item(item_id: int ):
-    return {"item_id": item_id}
+
 
 @app.get("/items/{item_id}")
 async def read_itemdd(item_id: int = Path(..., title="The ID of the item to get")):
@@ -113,13 +108,22 @@ async def body_idfun(body_id: int,item:Item):
     result= {"body_id": body_id}
     return result
 
-# def main():
-#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
-# if __name__ == '__main__':
-#     main()
+
+# app.include_router(module.router) to include routes defined in the
+# 'module or filename' into our FastAPI application
+app.include_router(FirstStep.router)
+app.include_router(PathParameters.router)
 app.include_router(bodyfield.router)
 app.include_router(bodynestedmodels.router)
 app.include_router(declarerequest.router)
 app.include_router(declarerequest.router)
-
 app.include_router(Header_parameters.router)
+
+
+
+
+
+# def main():
+#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+# if __name__ == '__main__':
+#     main()
