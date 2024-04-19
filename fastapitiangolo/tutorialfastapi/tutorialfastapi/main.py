@@ -1,15 +1,16 @@
  
-from fastapi import FastAPI, Query, Path, Body
-from typing import Annotated, Union, Any
-import uvicorn
-from enum import Enum
-from pydantic import BaseModel
-from tutorialfastapi.topics import bodyfield
-from tutorialfastapi.topics import bodynestedmodels
-from tutorialfastapi.topics import declarerequest
-from tutorialfastapi.topics import Header_parameters
-from tutorialfastapi.topics import FirstStep
-from tutorialfastapi.topics import PathParameters
+from fastapi import FastAPI
+from tutorialfastapi.topics import body_field
+from tutorialfastapi.topics import body_nested_models
+from tutorialfastapi.topics import declare_request
+from tutorialfastapi.topics import header_parameters
+from tutorialfastapi.topics import first_step
+from tutorialfastapi.topics import path_parameters
+from tutorialfastapi.topics import query_parameters
+from tutorialfastapi.topics import request_body
+from tutorialfastapi.topics import query_parameters_validation
+from tutorialfastapi.topics import path_parameters_validation
+from tutorialfastapi.topics import body_multiple_parameters
 
 # app variable will be an "instance" of the class FastAPI
 app: FastAPI = FastAPI(title='This is the tutorial of fastapi documentation')
@@ -18,113 +19,23 @@ app: FastAPI = FastAPI(title='This is the tutorial of fastapi documentation')
 @app.get('/')
 async def read_root() -> dict[str, str]:
     return {"message": f"Hello World"}
-
-
-
-
-@app.get("/itemhidden/")
-async def read_items(
-    hidden_query: Annotated[str | None, Query(include_in_schema=False)] = None,
-):
-    if hidden_query:
-        return {"hidden_query": hidden_query}
-    else:
-        return {"hidden_query": "Not found"}
-
-
-@app.get("/itemsdd/")
-async def read_itemsffffff(
-    q: Annotated[str | None, Query(title="Query string", min_length=3)] = None,
-):
-    results: dict[str, list[dict[str, str]] | list[str] | str] = {
-        "items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
-    if q:
-        results.update({"q": q})
-    return results
-
-
-@app.get("/items/")
-# async def read_items(q: Annotated[str, Query(min_length=3)] =' ...'):
-# Query parameter list / multiple values
-async def read_itemdddds(
-    q: Annotated[
-        str | None,
-        Query(
-            title="Query string",
-            description="Query string for the items to search in the database that have a good match",
-            min_length=3,
-            alias='item-querys',
-            deprecated=True,
-
-        ),
-    ] = None,
-):
-    results: dict[str, list[dict[str, str]] | list[str] | str] = {
-        "items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
-    if q:
-        results.update({"q": q})
-    return results
-
-
-@app.get("/items/{item_id}")
-async def read_itemdd(item_id: int = Path(..., title="The ID of the item to get")):
-    return {"item_id": item_id}
-
-
-class Language(str, Enum):
-    urdu = 'URDU'
-    punjabi = 'PUNJABI'
-    hindi = 'HINDI'
-    english = 'ENGLISH'
-
-
-@app.get('/language/{language}')
-async def read_language(language: Language) -> dict[str, str]:
-    return {"language": language}
-# http://127.0.0.1:8000/files//home/johndoe/index.html
-
-
-@app.get("/files/{file_path:path}")
-async def read_file(file_path: str):
-    return {"file_path": file_path}
-
-
-class Item(BaseModel):
-    name: str
-    description: str | None = None
-    price: float
-    tax: float | None = None
-
-
-class User(BaseModel):
-    username: str
-    full_name: str | None = None
-
-
-@app.put("/items/{item_id}")
-async def update_item(
-    item_id: int, item: Item, user: User, importance: Annotated[int, Body()]
-):
-    results = {"item_id": item_id, "item": item,
-               "user": user, "importance": importance}
-    return results
-
-
-@app.put("/items/{body_id}")
-async def body_idfun(body_id: int, item: Item):
-    result = {"body_id": body_id}
-    return result
-
-
 # app.include_router(module.router) to include routes defined in the
 # 'module or filename' into our FastAPI application
-app.include_router(FirstStep.router)
-app.include_router(PathParameters.router)
-app.include_router(bodyfield.router)
-app.include_router(bodynestedmodels.router)
-app.include_router(declarerequest.router)
-app.include_router(declarerequest.router)
-app.include_router(Header_parameters.router)
+app.include_router(first_step.router)
+app.include_router(path_parameters.router)
+app.include_router(query_parameters.router)
+app.include_router(request_body.router)
+app.include_router(query_parameters_validation.router)
+app.include_router(path_parameters_validation.router)
+app.include_router(body_multiple_parameters.router)
+
+
+
+app.include_router(body_field.router)
+app.include_router(body_nested_models.router)
+app.include_router(declare_request.router)
+app.include_router(declare_request.router)
+app.include_router(header_parameters.router)
 
 
 # def main():
