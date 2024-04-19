@@ -28,12 +28,10 @@ app.include_router(request_body.router)
 app.include_router(query_parameters_validation.router)
 app.include_router(path_parameters_validation.router)
 app.include_router(body_multiple_parameters.router)
-
-
-
 app.include_router(body_field.router)
 app.include_router(body_nested_models.router)
 app.include_router(declare_request.router)
+
 app.include_router(declare_request.router)
 app.include_router(header_parameters.router)
 
