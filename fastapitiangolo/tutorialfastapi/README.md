@@ -59,3 +59,7 @@ When you declare other function parameters that are not part of the path paramet
 By default, FastAPI will then expect its body directly.
 
 But if you want it to expect a JSON with a key item and inside of it the model contents, as it does when you declare extra body parameters, you can use the special Body parameter embed
+
+An operating system (OS) is software that manages computer hardware and software resources and provides services for computer programs. It acts as an intermediary between users and the computer hardware, enabling users to interact with the computer and software applications to run efficiently. The operating system performs tasks such as managing memory, scheduling tasks, handling input and output, and providing a user interface.
+
+Common examples of operating systems include Microsoft Windows, macOS, Linux, and Unix. Each operating system has its own set of features, user interface designs, and capabilities tailored to different types of users and computing environments.
