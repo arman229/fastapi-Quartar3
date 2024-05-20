@@ -1,35 +1,20 @@
 from fastapi import FastAPI
 import uvicorn
-# from backend_authportal import settings
-# from sqlmodel import create_engine, Session
-# from backend_authportal import model
-# from contextlib import asynccontextmanager
+ 
 from backend_authportal import model
+from jose import jwt, JWTError
+from datetime import datetime, timedelta
  
 
-# @asynccontextmanager
-# async def beforeStarting(app: FastAPI):
-#     print('before the table creation')
-#     create_table()
-#     yield
-
-
-# app: FastAPI = FastAPI(lifespan=beforeStarting)
-
-
-# def get_session():
-#     with Session as session:
-#         yield session
-
-
-# connection_String: str = str(settings.DATA_BASE_URL).replace(
-#     "postgresql", "postgresql + psycopg2")
-# engine = create_engine(connection_String, connect_args={
-#                        "sslmode": "require", }, pool_recycle=300)
-
-
-# def create_table():
-#     model.User.metadata.create_all(engine)
+ALGORITHM:str = 'ARMAN'
+SECRET_KEY:str = 'My name is arman'
+def create_access_token(subject: str , expires_delta: timedelta) -> str:
+    # utcnow:to  get current date 
+    expire = datetime.utcnow() + expires_delta
+    # such as name in my libraty card name:sub
+    to_encode = {"expiry_time": expire, "sub": subject}
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
 
 app: FastAPI = FastAPI( )
 @app.get('/')
@@ -37,10 +22,14 @@ def home_city():
     return {'message': model.name }
 
 
-@app.get('/cities', response_model=dict[str, list[str]])
-def get_cities():
-    return {'Cities': ['lahore', 'sialkot', 'daska']}
-
+@app.get("/get_token")
+def get_access_token(user_name: str):
+    
+    access_token_expires = timedelta(minutes=1)
+    
+    access_token = create_access_token(subject=user_name, expires_delta=access_token_expires)
+    
+    return {"access_token": access_token}
 
 def main():
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
