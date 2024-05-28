@@ -1,0 +1,20 @@
+- Docker:
+Docker is a platform and tool for developing, deploying, and running applications in containers. Docker is a  tool that helps you create, manage, and run containers, making it easy to deploy and test your code.
+
+- container
+A container is an isolated environment for your code
+Containers are lightweight, standalone, and executable software packages that contain everything needed to run an application.
+- Docker Image: A Docker image is a static, immutable package of software that includes everything an application needs to run. It's a template or a blueprint for creating containers.
+A Docker image is a lightweight, standalone, and executable package of software that includes everything an application needs to run, such as:
+
+1. Code
+2. Libraries
+3. Dependencies
+4. Tools
+5. Settings
+
+It's a snapshot of a container that can be run on any system that supports Docker, without requiring a specific environment or configuration.
+
+- BaseImage
+A base image is like the foundation or starting point for creating more complex images in Docker. It's a pre-built image that already contains a basic operating system and some essential software components. Developers use base images as a starting point for building their own custom images by adding additional layers of software, configurations, and application code on top.
+Docker image is a class and docker container is object" - This is the best single line explanation for docker image vs container
