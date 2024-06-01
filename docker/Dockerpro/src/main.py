@@ -7,3 +7,6 @@ def hello():
 @app.get("/name")
 def name():
    return{ "Name ":"My name is Arman ashraf "}    
+@app.get("/docker")
+def docker():
+    return{ "Topic ":"Docker"}

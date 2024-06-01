@@ -4,12 +4,15 @@ app = FastAPI()
 
 @app.get('/')
 def hell():
-    return {'hello': 'world'}
+    return {'hello': ' new world'}
 
 
 @app.get('/city')
 def helly():
     return {'City': 'Lahore'}
+@app.get('/devcontainer')
+def helly():
+    return {'Topic': 'devcontainer'}
 
 
 @app.get('/country')
