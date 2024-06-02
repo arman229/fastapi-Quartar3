@@ -1,14 +1,14 @@
 [tool.poetry]
-name = "devcontainer"
+name = "dev-project"
 version = "0.1.0"
 description = ""
-authors = ["arman229 <armanashraf015@gmail.com>"]
+authors = ["Arman229 <armanashraf015@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-fastapi = "^0.111.0"
-sqlmodel = {extras = ["standared"], version = "^0.0.18"}
+fastapi = "^0.110.2"
+uvicorn = "^0.30.0"
 
 
 [build-system]

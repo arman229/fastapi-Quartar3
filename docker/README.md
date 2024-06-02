@@ -70,7 +70,7 @@ Installing Docker Desktop
 
  # Running the Container and start a Bash shell:
 
-      docker run -it image_name /bin/bash
+      docker run --container_name -it   -p 8000:8000 image_name /bin/bash
 # Opening the command line in the container:
 
       docker exec -it image_name bash    

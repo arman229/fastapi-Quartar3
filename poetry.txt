@@ -1,3 +1,4 @@
- How we can create portry new project and new virtual env
-poetry new docker --name app
-poetry shell
+How we can create portry new project and new virtual env
+ poetry new docker --name app
+how we create virtual envirnoment
+  poetry shell

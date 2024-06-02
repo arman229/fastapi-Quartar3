@@ -1,0 +1,1 @@
+Docker Compose is a tool specifically designed to simplify the development and management of applications that consist of multiple Docker containers. 
