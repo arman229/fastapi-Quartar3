@@ -4,7 +4,7 @@ app = FastAPI()
 
 @app.get('/')
 def hell():
-    return {'hello': ' world'}
+    return {'hello': 'compose'}
 
 
  

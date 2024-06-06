@@ -8,6 +8,6 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"  #     Expose container port 8000 to host port 8000  
+      - "8000:8000"  
     volumes:
       - .:/code

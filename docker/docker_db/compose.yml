@@ -1,0 +1,36 @@
+version: "3.9"
+name: 'myapi'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres_db  
+    ports:
+      - "8000:8000"  
+    networks:
+      - my-api-net
+
+    
+  postgres_db:
+    image: postgres:latest  
+    restart: always
+    container_name: container_name
+    environment:
+        - POSTGRES_USER=arman
+        - POSTGRES_PASSWORD=armanashraf
+        - POSTGRES_DB=database
+    ports:
+        - '5433:5432'
+    volumes:
+        - postgres_db:/var/lib/postgresql/data
+    networks:
+      - my-api-net
+
+volumes:
+  postgres_db:
+    driver: local
+
+networks:
+  my-api-net:     
