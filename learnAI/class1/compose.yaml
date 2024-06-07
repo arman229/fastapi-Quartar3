@@ -4,9 +4,9 @@ services:
     container_name: "jupter"
     hostname: "jupter"
     build:
-      context: ./code
+      context: ./chat_complation
     ports:
     - "8888:8888"
+    
     volumes:
-     - ./code:/code/ 
-   
+      - .:/code
