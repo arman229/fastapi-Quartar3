@@ -37,16 +37,44 @@ I hope this helps you understand Kafka better! If you have any more questions, f
 # Kafka 3.7 Docker Image
 * Get the docker image
 
-docker pull apache/kafka:3.7.0
-Start the kafka docker container
+      docker pull apache/kafka:3.7.0
+* Start the kafka docker container
 
-docker run -p 9092:9092 apache/kafka:3.7.0
-Open another console and check to see if container running:
+      docker run -p 9092:9092 apache/kafka:3.7.0
+* Open another console and check to see if container running:
 
-docker ps
-Copy the container name, and give the following command to attach:
+      docker ps
+* Copy the container name, and give the following command to attach:
 
-docker exec -it <container-name> /bin/bash
-Note: Kafka commands are in this directory in the container
+      docker exec -it <container-id(first four digits)> /bin/bash
+* Note: Kafka commands are in this directory in the container
 
-/opt/kafka/bin
+      cd /opt/kafka/bin
+###### CREATE A TOPIC TO STORE YOUR EVENTS      
+
+      /opt/kafka/bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092
+
+###### Describe the Topics
+
+      /opt/kafka/bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092
+
+
+######  WRITE SOME EVENTS INTO THE TOPIC
+
+      /opt/kafka/bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
+###### READ THE EVENTS
+
+      /opt/kafka/bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
+
+
+###### Kafka UI
+This is a popular open-source web UI specifically designed for viewing Kafka topics, messages, brokers, consumer groups, and even lets you create new topics.       
+    
+     
+       docker network create -d bridge kafka-net
+
+       docker network ls
+
+       docker run -p 9092:9092 --network kafka-net --name kafkacon apache/kafka:3.7.0
+
+       docker run -it -p 8080:8080 --network kafka-net -e DYNAMIC_CONFIG_ENABLED=true provectuslabs/kafka-ui
