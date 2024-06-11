@@ -5,4 +5,4 @@ RUN pip install poetry
 COPY . /code/
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-root
-CMD ["poetry", "run", "uvicorn", "backend_authportal.main:app", "--host", "0.0.0.0", "--reload"]
+CMD ["poetry", "run", "uvicorn", "backend_authportal.newmain:app", "--host", "0.0.0.0", "--reload"]
