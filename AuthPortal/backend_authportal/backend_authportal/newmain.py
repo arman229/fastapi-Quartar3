@@ -32,16 +32,12 @@ def signup(session: Annotated[Session, Depends(get_session)],
            password: Annotated[str, Form()],
            phone: Annotated[str, Form()],
            user_name: Annotated[str, Form()]):
-    # Check if email already exists
+     
     existing_user = session.exec(select(NewUsers).where(NewUsers.email == email)).first()
     if existing_user:
         raise HTTPException(status_code=400, detail=f"Email {email} is already in use.")
-
-    # Check if phone number already exists
-    existing_user = session.exec(select(NewUsers).where(NewUsers.phone == phone)).first()
-    if existing_user:
-        raise HTTPException(status_code=400, detail=f"Phone number {phone} is already in use.")
-
+ 
+    
     # Check if username already exists
     existing_user = session.exec(select(NewUsers).where(NewUsers.user_name == user_name)).first()
     if existing_user:
