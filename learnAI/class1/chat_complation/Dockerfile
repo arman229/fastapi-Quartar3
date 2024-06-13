@@ -8,7 +8,7 @@ RUN pip install poetry
 COPY . /code
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-root
- 
+RUN poetry install 
 EXPOSE 8888
 CMD [ "jupyter", "notebook","--port","8888","--no-browser","--allow-root" ]
 
