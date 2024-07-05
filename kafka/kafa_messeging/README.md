@@ -41,6 +41,8 @@ I hope this helps you understand Kafka better! If you have any more questions, f
 * Start the kafka docker container
 
       docker run -p 9092:9092 apache/kafka:3.7.0
+      or
+       docker run -p 9092:9092 --name kafkacon apache/kafka:3.7.0
 * Open another console and check to see if container running:
 
       docker ps
