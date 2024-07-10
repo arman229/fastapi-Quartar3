@@ -1,0 +1,6 @@
+file '../images\human.jpg'
+duration 2
+file '../images\Screenshot1.png'
+duration 2
+file '../images\Screenshot2.png'
+duration 2
