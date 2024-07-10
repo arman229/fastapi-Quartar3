@@ -61,14 +61,14 @@ def signup(
             status_code=400, detail="An error occurred while creating the user."
         )
 
-    return {"message": f"User with email {email} created successfully"}
-@app.post("api/validation_token")
-def validate_token(token,str,session: Annotated[Session, Depends(get_session)],):
-    user = get_current_user(token,session)
+    return {"message": f"User with email {email} created successfully","status":200}
+
+@app.post("/api/validate_token")
+def validate_token(token: str, session: Session = Depends(get_session)):
+    user = get_current_user(token, session)
     if not user:
         raise HTTPException(status_code=401, detail="Invalid token")
-    return {"message": f"Token is valid and user: {user}"}
-
+    return {"valid": True, "user": user.username}
 @app.post("/api/signin")
 def signin(
     form_data: Annotated[OAuth2PasswordRequestForm, Depends(OAuth2PasswordRequestForm)],
@@ -94,7 +94,7 @@ def signin(
     }
 
 
-@app.post("/signout")
+@app.post("/api/signout")
 def signout(
     token: Annotated[str, Depends(verify_token)],
     session: Annotated[Session, Depends(get_session)],

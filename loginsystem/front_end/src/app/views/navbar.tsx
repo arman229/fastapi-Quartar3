@@ -1,9 +1,14 @@
 
 "use client";
-
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
-
+import { useRouter } from "next/navigation";
 export function NavbarComp() {
+const router = useRouter();
+  const handleSignOut = async () => {
+    await fetch('/api/signout', { method: 'POST' }); 
+    document.cookie = 'auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    router.push('/signin');
+  };
   return (
     <Navbar fluid rounded>
       <Navbar.Brand href="https://flowbite-react.com"> 
@@ -23,7 +28,7 @@ export function NavbarComp() {
           </Dropdown.Header>
           <Dropdown.Item href="/signup">Sign up</Dropdown.Item>
           <Dropdown.Item href="/signin">Sign in</Dropdown.Item>
-          <Dropdown.Item href="/">Sign out</Dropdown.Item>
+          <Dropdown.Item href="/" onClick={handleSignOut}>Sign out</Dropdown.Item>
         </Dropdown>
         <Navbar.Toggle />
       </div>
@@ -32,6 +37,8 @@ export function NavbarComp() {
           Home
         </Navbar.Link>
         <Navbar.Link href="/products">products</Navbar.Link> 
+        
+        <Navbar.Link href="/about">about</Navbar.Link> 
          </Navbar.Collapse>
     </Navbar>
   );
