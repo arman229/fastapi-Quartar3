@@ -49,7 +49,7 @@ def get_session():
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"hi": "Welcome to arman"}
 
 
 

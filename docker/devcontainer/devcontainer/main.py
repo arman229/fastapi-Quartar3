@@ -4,7 +4,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"Hello": "Dev container"}
+    return {"Hello": "new Dev container"}
 @app.get("/devcontainer")
 def read_root():
-    return {"Hello": "changing from Dev container"}
+    return {"Hello": "new changing from Dev container"}

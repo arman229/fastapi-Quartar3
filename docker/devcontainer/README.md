@@ -11,8 +11,14 @@ Open the folder in the container.
 Add configuration to the workspace:
 Select "From Dockerfile."
 Click "OK."
-This process will add two files to your project:    .devcontainer.
+This process will add one files to your project:  .devcontainer.
+<!-- This process will add two files to your project: .github and .devcontainer. -->
 .devcontainer: We can add some extensions to our project by enabling them in a container.
 
 Why do we use a Dev container? 
 Sometimes, when we're working on a project and we create an image to run in a container, and we want to add some extensions to our project, we can do so using the Dev container.
+
+### Note: This project works properly in the devcontainer and locally. Changes made locally also affect the container, and vice versa.
+
+
+ 
